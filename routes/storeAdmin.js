@@ -19,3 +19,6 @@ router.get( '/settings',              ctrl.showSettings);
 router.post('/settings',              ctrl.updateSettings);
 
 module.exports = router;
+const paypalCtrl = require('../controllers/paypalController');
+router.get( '/payout', paypalCtrl.showPayout);
+router.post('/payout', paypalCtrl.processPayout);
