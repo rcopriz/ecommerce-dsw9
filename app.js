@@ -20,6 +20,10 @@ const checkoutRoutes = require('./routes/checkout');
 const app  = express();
 const port = process.env.PORT || 3000;
 
+const storeAdminRoutes = require('./routes/storeAdmin');
+
+const customerRoutes = require('./routes/customer');
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.set('layout', 'layout');        // usa views/layout.ejs como plantilla base
@@ -64,7 +68,11 @@ app.use(['/store/login', '/store/register',
 app.use('/store', storeAuthRoutes);
 
 app.use('/user', userAuthRoutes);
+// Ruta:
+app.use('/customer', customerRoutes);
 
+// Ruta:
+app.use('/store-admin', storeAdminRoutes);
 sequelize.sync()
   .then(() => {
     console.log('Base de datos sincronizada');
