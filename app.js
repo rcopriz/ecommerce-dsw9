@@ -54,9 +54,6 @@ app.use('/',         productRoutes);
 app.use('/cart',     cartRoutes);
 app.use('/checkout', checkoutRoutes);
 
-app.use((req, res) => {
-  res.status(404).render('404', { title: 'Pagina no encontrada' });
-});
 
 app.use(['/store/login', '/store/register',
          '/user/login',  '/user/register',
@@ -84,3 +81,7 @@ sequelize.sync()
     console.error('Error al sincronizar BD:', err.message);
     process.exit(1);
   });
+
+app.use((req, res) => {
+  res.status(404).render('404', { title: 'Pagina no encontrada' });
+});
